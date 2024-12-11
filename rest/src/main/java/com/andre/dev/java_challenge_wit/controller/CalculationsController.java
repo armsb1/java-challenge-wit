@@ -2,6 +2,7 @@ package com.andre.dev.java_challenge_wit.controller;
 
 import com.andre.dev.java_challenge_wit.service.CalculationsService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 @RestController()
 @RequestMapping("api/v1/calculations")
 @AllArgsConstructor
+@Slf4j
 public class CalculationsController {
 
     private final CalculationsService calculationsService;
@@ -28,6 +30,7 @@ public class CalculationsController {
      */
     @GetMapping("/sum")
     public BigDecimal sum (@RequestParam BigDecimal a, @RequestParam BigDecimal b) {
+        log.info("Received request to sum: {} + {}", a, b);
         return calculationsService.calculateSum(a, b);
     }
 
@@ -40,6 +43,7 @@ public class CalculationsController {
      */
     @GetMapping("/subtraction")
     public BigDecimal subtraction (@RequestParam BigDecimal a, @RequestParam BigDecimal b) {
+        log.info("Received request to subtract: {} + {}", a, b);
         return calculationsService.calculateSubtraction(a, b);
     }
 
@@ -52,6 +56,7 @@ public class CalculationsController {
      */
     @GetMapping("/multiplication")
     public BigDecimal multiplication (@RequestParam BigDecimal a, @RequestParam BigDecimal b) {
+        log.info("Received request to multiply: {} + {}", a, b);
         return calculationsService.calculateMultiplication(a, b);
     }
 
@@ -64,6 +69,7 @@ public class CalculationsController {
      */
     @GetMapping("/division")
     public BigDecimal division (@RequestParam BigDecimal a, @RequestParam BigDecimal b) {
+        log.info("Received request to divide: {} + {}", a, b);
         return calculationsService.calculateDivision(a, b);
     }
 

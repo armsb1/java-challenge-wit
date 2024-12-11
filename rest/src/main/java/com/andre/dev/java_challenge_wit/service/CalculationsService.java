@@ -57,6 +57,7 @@ public class CalculationsService {
      */
     public BigDecimal calculateDivision(BigDecimal a, BigDecimal b) {
         if (b.compareTo(BigDecimal.ZERO) == 0) {
+            log.error("Attempted division by zero: {} / {}", a, b);
             throw new IllegalArgumentException("Denominador não pode ser 0");
         }
         return a.divide(b, 2, RoundingMode.HALF_UP);

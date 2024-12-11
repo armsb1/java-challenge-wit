@@ -29,6 +29,7 @@ public class CalculatorService {
      * @return the big decimal
      */
     public BigDecimal calculate(String equation) {
+        log.info("Starting calculation for equation: {}", equation);
 
         Map<String, String> operationEndpoints = new HashMap<>();
         operationEndpoints.put("+", "/sum");
@@ -43,6 +44,7 @@ public class CalculatorService {
 
         String[] numbers = equation.split(String.format("\\%s", operator));
         if (numbers.length != 2) {
+            log.error("Invalid equation: {} - must contain exactly two numbers", equation);
             throw new IllegalArgumentException("Equação inválida: deve conter apenas 2 números");
         }
 
@@ -53,10 +55,12 @@ public class CalculatorService {
         String endpoint = operationEndpoints.get(operator);
         String url = String.format("%s%s?a=%s&b=%s", BASE_URL, endpoint, a, b);
 
+        log.info("Calling REST API: {}", url);
         BigDecimal result = restTemplate.getForObject(url, BigDecimal.class);
 
-        kafkaTemplate.send("calculations", endpoint.substring(1, 2).toUpperCase()
-                + endpoint.substring(2) + ":" + result);
+        String message = endpoint.substring(1, 2).toUpperCase() + endpoint.substring(2) + ":" + result;
+        kafkaTemplate.send("calculations", message);
+        log.info("Message sent to Kafka: {}", message);
 
         return result;
     }
