@@ -17,7 +17,7 @@ Before you begin, make sure you have the following tools installed:
    First, clone the project from GitHub:
 
    ```bash
-   git clone https://github.com/yourusername/your-repository.git
+   git clone https://github.com/armsb1/java-challenge-wit.git
 
 
 ## Running Kafka and Zookeeper with Docker Compose in IntelliJ IDEA
