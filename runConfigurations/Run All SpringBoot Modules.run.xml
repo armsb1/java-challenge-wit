@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run All SpringBoot Modules" type="CompoundRunConfigurationType">
+    <toRun name="CalculaorApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="NotificationApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="RestApplication" type="SpringBootApplicationConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
